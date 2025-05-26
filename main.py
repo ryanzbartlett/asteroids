@@ -35,10 +35,16 @@ def main():
         pygame.display.flip()
         dt = clock.tick(60.0) / 1000
         updatable.update(dt)
+
         for asteroid in asteroids:
             if player.isColliding(asteroid):
                 print("Game over!")
                 exit(0)
+
+            for shot in shots:
+                if shot.isColliding(asteroid):
+                    shot.kill()
+                    asteroid.kill()
 
 
 if __name__ == "__main__":
